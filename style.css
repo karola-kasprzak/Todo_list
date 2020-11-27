@@ -1,0 +1,60 @@
+body {
+  background-color: #fffafa;
+  font-family:  Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+
+}
+
+.main-header {
+  background-image: url(jess-bailey-q10VITrVYUM-unsplash.jpg);
+  background-position: center;
+  height: 300px;
+  margin-top: 0;
+  margin-bottom: 0; 
+  text-align: center;
+  text-justify: auto;
+  font-size: 72px;
+  padding-top: 48px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 12px;
+}
+
+.menu {
+  margin: 36px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  background-color: white;
+}
+
+.grid-task {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 12px;
+}
+
+.task-container {
+  background-color: white;
+   border-radius: 4px;
+  height: 200px;
+  padding: 10px;
+}
+.red {
+  color: red;
+}
+
+.green {
+  color: green
+}
+
+.menu-item {
+  padding: 0.5rem;
+  margin: 1rem 0;
+}

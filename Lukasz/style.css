@@ -1,0 +1,32 @@
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20px
+}
+.grid-task {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  border: 2px solid goldenrod;
+  text-align: center;
+}
+.red {
+  color: red;
+  font-size: 20px;
+  font-weight: 900;
+}
+.green {
+  color: green;
+  font-size: 20px;
+  font-weight: 900;
+
+}
+.container {
+  border: 2px solid yellowgreen;
+  height: 180px;
+  margin: 5px;
+}
+.menu {
+  text-align: center;
+  margin-bottom: 20px;
+}

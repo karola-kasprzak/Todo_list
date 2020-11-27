@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Lista To Do</h1>
+  <div class="grid">
+    <div class="done">
+      <div class="menu">
+        <label for="useridDone">Wybierz użytkownika</label>
+        <select name="userIddone" class="main-select" onchange="selectUserDone(value)">
+        </select>
+        <label for="title"></label>
+        <input name="title" type="text" class="main-input" onfocusout="searchValue(value)">
+      </div>
+      <div class="taskDone  grid-task">
+
+      </div>
+    </div>
+    <div class="notDone">
+      <div class="menu">
+        <label for="useridNotDone">Wybierz użytkownika</label>
+        <select name="userIdNotDone" class="main-select" onchange="selectUserNotDone(value)">
+
+        </select>
+        <label for="title"></label>
+        <input name="title" type="text" class="main-input">
+      </div>
+      <div class="taskNotDone grid-task">
+
+
+
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
