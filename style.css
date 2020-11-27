@@ -58,3 +58,7 @@ body {
   padding: 0.5rem;
   margin: 1rem 0;
 }
+
+.menu-label {
+  font-size: 0.8rem;
+}

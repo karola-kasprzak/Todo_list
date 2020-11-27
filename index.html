@@ -12,12 +12,12 @@
     <div class="done">
       <div class="menu">
         <h2>Zadania ukończone</h2>
-        <label for="useridDone">Wybierz użytkownika</label>
-        <select name="userIdDone" class="main-select" onchange="selectUser(value, true)">
+        <label for="useridDone" class="menu-label">Wybierz użytkownika</label>
+        <select name="userIdDone" class="main-select menu-item" onchange="selectUser(value, true)">
         </select>
-        <label for="title"></label>
-        <input name="title" type="text" class="main-input" onfocusout="search(value, true)">
-        <button class="btn" onClick="showAll(true)">Pokaż wszytsko</button>
+        <label for="title" class="menu-label">Wyszukaj po nazwie zadania</label>
+        <input name="title" type="text" class="main-input menu-item" onfocusout="search(value, true)">
+        <button class="btn menu-item" onClick="showAll(true)">Pokaż wszytsko</button>
       </div>
 <div class="tasksDone grid-task"></div>
     
@@ -25,12 +25,12 @@
     <div class="notDone">
       <div class="menu">
         <h2>Zadania nieukończone</h2>
-        <label for="useridNotDone">Wybierz użytkownika</label>
-        <select name="userIdNotDone" class="main-select" onchange="selectUser(value, false)">
+        <label for="useridNotDone" class="menu-label">Wybierz użytkownika</label>
+        <select name="userIdNotDone" class="main-select menu-item" onchange="selectUser(value, false)">
         </select>
-        <label for="title"></label>
-        <input name="title" type="text" class="main-input" onfocusout="search(value, false)">
-        <button class="btn" onClick="showAll(false)">Pokaż wszytsko</button>
+        <label for="title" class="menu-label">Wyszukaj po nazwie zadania</label>
+        <input name="title" type="text" class="main-input menu-item" onfocusout="search(value, false)">
+        <button class="btn menu-item" onClick="showAll(false)">Pokaż wszytsko</button>
       </div>
       <div class="tasksNotDone grid-task">
 
