@@ -3,24 +3,24 @@
 //zadanie: maskymalnie skrócić kod
 
 const allArr = [];
+const currentArrDone = [];
+const currentArrNotDone = [];
 
-fetch("https://jsonplaceholder.typicode.com/todos")
-    .then((res) => res.json())
-    .then((res) => {
-        const doneTask = res.filter((task) => task.completed === true);
-        const notDoneTask = res.filter((task) => task.completed === false);
-        allArr.push(...res);
-        createOptions(doneTask, true);
-        createOptions(notDoneTask, false);
-        createElement(doneTask, true);
-        createElement(notDoneTask, false);
-    });
+(function getData() {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+        .then((res) => res.json())
+        .then((res) => {
+            const doneTask = res.filter((task) => task.completed === true);
+            const notDoneTask = res.filter((task) => task.completed === false);
+            allArr.push(...res);
+            createOptions(doneTask, true);
+            createOptions(notDoneTask, false);
+            createElement(doneTask, true);
+            createElement(notDoneTask, false);
+        });
+})();
 
-//wyniki nie zdążą się ładować z fetch !! --> opakować fetch w fukcję, a następnie w fukcję asynchroniczną
-let currentArrDone = allArr.filter((item) => item.completed === true);
-console.log("currentArrDone", currentArrDone);
-let currentArrNotDone = allArr.filter((item) => item.completed === false);
-console.log("currentArrNotDone", currentArrNotDone);
+// setTimeout(getData, 0);
 
 //funkcja tworząca karty zadan, parametr 1 to lista obiektów, parametr 2 to boolean określający stan wykonania zadania
 function createElement(tasks, bool) {
@@ -114,25 +114,39 @@ function showAll(bool) {
     }
 }
 
-// wyszukiwanie po opisie taska w polu input
-function search(value, bool) {
-    let searchTaskUsedVal = [];
-    if (bool) {
-        currentArrDone.forEach((task) => {
-            if (task.title.search(value) > 0) {
-                searchTaskUsedVal.push(task);
-            }
-        });
-    } else {
-        currentArrNotDone.forEach((task) => {
-            if (task.title.search(value) > 0) {
-                searchTaskUsedVal.push(task);
-            }
-        });
-    }
-    console.log(value, bool);
+// NIE DZIAŁA: wyszukiwanie po opisie taska w polu input
+// function search(value, bool) {
+//     let searchTaskUsedVal = [];
+//     if (bool) {
+//         currentArrDone.forEach((task) => {
+//             if (task.title.search(value) > 0) {
+//                 searchTaskUsedVal.push(task);
+//             }
+//         });
+//     } else {
+//         currentArrNotDone.forEach((task) => {
+//             if (task.title.search(value) > 0) {
+//                 searchTaskUsedVal.push(task);
+//             }
+//         });
+//     }
+//     console.log(value, bool);
 
-    console.log("search -> currentArrNotDone", currentArrNotDone);
-    console.log("search -> currentArrDone", currentArrDone);
-    console.log("search -> searchTaskUsedVal", searchTaskUsedVal);
+//     console.log("search -> currentArrNotDone", currentArrNotDone);
+//     console.log("search -> currentArrDone", currentArrDone);
+//     console.log("search -> searchTaskUsedVal", searchTaskUsedVal);
+// }
+
+function search(value, bool) {
+    console.log(value, bool);
 }
+
+//wyniki nie zdążą się ładować z fetch !! --> opakować fetch w fukcję, a następnie w fukcję asynchroniczną
+// function filterData(bool) {
+//     let newArr = [];
+
+//     setTimeout(cu, 0);
+//     console.log("filterData -> newArr", newArr);
+// }
+
+// setTimeout(filterData(false), 0);
