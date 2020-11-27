@@ -3,8 +3,6 @@
 //zadanie: maskymalnie skrócić kod
 
 const allArr = [];
-const currentArrDone = [];
-const currentArrNotDone = [];
 
 (function getData() {
     fetch("https://jsonplaceholder.typicode.com/todos")
@@ -19,8 +17,6 @@ const currentArrNotDone = [];
             createElement(notDoneTask, false);
         });
 })();
-
-// setTimeout(getData, 0);
 
 //funkcja tworząca karty zadan, parametr 1 to lista obiektów, parametr 2 to boolean określający stan wykonania zadania
 function createElement(tasks, bool) {
@@ -55,7 +51,7 @@ function createElement(tasks, bool) {
 
 //funkcja tworząca listę select z użytkownikami
 function createOptions(tasks, bool) {
-    let users = [];
+    let users = ["--wybierz--"];
     tasks.forEach((task) => {
         if (users.every((element) => element !== task.userId)) {
             users.push(task.userId);
@@ -95,11 +91,6 @@ function selectUser(value, bool) {
         (item) => item.completed === bool && item.userId === user
     );
     createElement(userArr, bool);
-    if (bool) {
-        currentArrDone = userArr;
-    } else {
-        currentArrNotDone = userArr;
-    }
 }
 
 //f. pozwalająca wyświetlić wszystkie dostępne zadania (ukończone - true, lub nieukończone - false)
@@ -107,46 +98,45 @@ function showAll(bool) {
     clearField(bool);
     const temp = allArr.filter((item) => item.completed === bool);
     createElement(temp, bool);
-    if (bool) {
-        currentArrDone = temp;
-    } else {
-        currentArrNotDone = temp;
-    }
+
+    //przywraca uzytkownika do stanu wyjsciowego
+    let selectField = "";
+    bool
+        ? (selectField = document.getElementById("selectUserTrue"))
+        : (selectField = document.getElementById("selectUserFalse"));
+    selectField.value = "--wybierz--";
 }
 
-// NIE DZIAŁA: wyszukiwanie po opisie taska w polu input
-// function search(value, bool) {
-//     let searchTaskUsedVal = [];
-//     if (bool) {
-//         currentArrDone.forEach((task) => {
-//             if (task.title.search(value) > 0) {
-//                 searchTaskUsedVal.push(task);
-//             }
-//         });
-//     } else {
-//         currentArrNotDone.forEach((task) => {
-//             if (task.title.search(value) > 0) {
-//                 searchTaskUsedVal.push(task);
-//             }
-//         });
-//     }
-//     console.log(value, bool);
-
-//     console.log("search -> currentArrNotDone", currentArrNotDone);
-//     console.log("search -> currentArrDone", currentArrDone);
-//     console.log("search -> searchTaskUsedVal", searchTaskUsedVal);
-// }
-
+// wyszukiwanie po opisie taska w polu input
 function search(value, bool) {
-    console.log(value, bool);
+    // spr czy sprawdzamy taski ukonczone czy nie oraz czy wybrano usera
+    let inputField = "";
+    let selectField = "";
+    if (bool) {
+        inputField = document.getElementById("inputTitleTrue");
+        selectField = document.getElementById("selectUserTrue").value;
+    } else {
+        inputField = document.getElementById("inputTitleFalse");
+        selectField = document.getElementById("selectUserFalse").value;
+    }
+    inputField.value = "";
+
+    //filtrowanie po stanie ukonczenia i wartosci zczytanej z input
+    let searchResult = allArr.filter(
+        (item) => item.completed === bool && item.title.search(value) > -1
+    );
+
+    //dodatkowe filtrowanie jesli wybrano uzytkownika
+    let searchResult2;
+    if (selectField > 0) {
+        searchResult2 = searchResult.filter(
+            (item) => item.userId == selectField
+        );
+    } else {
+        searchResult2 = searchResult;
+    }
+
+    // console.log(`user ${selectField}`, searchResult2);
+    clearField(bool);
+    createElement(searchResult2, bool);
 }
-
-//wyniki nie zdążą się ładować z fetch !! --> opakować fetch w fukcję, a następnie w fukcję asynchroniczną
-// function filterData(bool) {
-//     let newArr = [];
-
-//     setTimeout(cu, 0);
-//     console.log("filterData -> newArr", newArr);
-// }
-
-// setTimeout(filterData(false), 0);
